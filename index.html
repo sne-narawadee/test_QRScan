@@ -16,7 +16,6 @@
 </html>
 -->
 
-
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -37,6 +36,7 @@
         }
         #container {
             text-align: center;
+            position: relative; /* เพื่อให้ปุ่ม "Logout" อยู่ด้านล่างของกล้อง */
         }
         #image {
             max-width: 60px; /* ปรับขนาดของรูปภาพที่นี่ */
@@ -56,12 +56,32 @@
             height: 100%;
             border: 1px solid black;
         }
+        #logoutButton {
+            position: absolute;
+            bottom: 20px; /* ระยะห่างจากด้านล่าง */
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #logoutButton:hover {
+            background-color: darkred;
+        }
     </style>
 </head>
 <body>
     <div id="container">
+        <!-- Pattern  
+        <img id="image" src="https://raw.githubusercontent.com/sne-narawadee/test_QRScan/main/+imgfile from upload+" alt="QR Scanner Image">
+        -->
         <img id="image" src="https://raw.githubusercontent.com/sne-narawadee/test_QRScan/main/sneGoldBlockLogo3.png" alt="QR Scanner Image">
         <h1>SNE QR Scanner</h1>
+        <button id="logoutButton">Logout</button>
     </div>
     <video id="video"></video>
     <script>
@@ -86,6 +106,12 @@
         
         // Start scanning when the page loads
         window.onload = startScanning;
+
+        // Logout button functionality
+        document.getElementById('logoutButton').addEventListener('click', () => {
+            window.location.href = 'https://www.google.com';
+            window.close(); // ปิดหน้าต่างปัจจุบัน
+        });
     </script>
 </body>
 </html>
