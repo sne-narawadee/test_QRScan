@@ -38,27 +38,27 @@
             padding: 10px;
         }
         #image {
-            max-width: 60px;
+            max-width: 60px; /* ปรับขนาดของรูปภาพที่นี่ */
             height: auto;
             display: block;
             margin: 0 auto;
         }
         h1 {
             margin: 0;
-            font-family: 'Roboto', sans-serif;
-            font-size: 1.5em;
-            font-weight: 700;
-            color: #333;
+            font-family: 'Open Sans', sans-serif; /* ใช้ฟอนต์ Roboto สำหรับ h1 */
+            font-size: 1.2em; /* ขนาดฟอนต์ */
+            font-weight: 700; /* ความหนาของฟอนต์ */
+            color: #333; /* สีของฟอนต์ */
         }
         #video {
             width: 100%;
             height: 100%;
             border: 1px solid black;
-            flex-grow: 1;
+            flex-grow: 1; /* ทำให้ video ใช้พื้นที่ที่เหลือ */
         }
         #logoutButton {
-            position: fixed;
-            bottom: 10px;
+            position: fixed; /* ปักหมุดปุ่มที่ด้านล่างสุด */
+            bottom: 10px; /* ระยะห่างจากด้านล่าง */
             left: 50%;
             transform: translateX(-50%);
             padding: 10px 20px;
@@ -119,7 +119,7 @@
         document.getElementById('logoutButton').addEventListener('click', () => {
             window.open('https://www.google.com', '_blank');
             setTimeout(() => {
-                window.close();
+                window.close(); // ปิดหน้าต่างปัจจุบัน
             }, 500);
         });
     </script>
