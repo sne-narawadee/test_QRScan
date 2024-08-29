@@ -38,27 +38,27 @@
             padding: 10px;
         }
         #image {
-            max-width: 60px; /* ปรับขนาดของรูปภาพที่นี่ */
+            max-width: 60px;
             height: auto;
             display: block;
             margin: 0 auto;
         }
         h1 {
             margin: 0;
-            font-family: 'Open Sans', sans-serif; /* ใช้ฟอนต์ Roboto สำหรับ h1 */
-            font-size: 1em; /* ขนาดฟอนต์ */
-            font-weight: 700; /* ความหนาของฟอนต์ */
-            color: #333; /* สีของฟอนต์ */
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #333;
         }
         #video {
             width: 100%;
             height: 100%;
             border: 1px solid black;
-            flex-grow: 1; /* ทำให้ video ใช้พื้นที่ที่เหลือ */
+            flex-grow: 1;
         }
         #logoutButton {
-            position: fixed; /* ปักหมุดปุ่มที่ด้านล่างสุด */
-            bottom: 10px; /* ระยะห่างจากด้านล่าง */
+            position: fixed;
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
             padding: 10px 20px;
@@ -79,41 +79,49 @@
         <img id="image" src="https://raw.githubusercontent.com/sne-narawadee/test_QRScan/main/sneGoldBlockLogo3.png" alt="QR Scanner Image">
         <h1>SNE QR Scanner</h1>
     </div>
-    <video id="video"></video>
+    <video id="video" playsinline></video>
     <button id="logoutButton">Logout</button>
     <script>
         const codeReader = new ZXing.BrowserQRCodeReader();
         const videoElement = document.getElementById('video');
-        
+
         // Function to start scanning
-        function startScanning() {
-            codeReader.decodeFromVideoDevice(null, videoElement, (result, error) => {
-                if (result) {
-                    console.log('QR code detected:', result.text);
-                    // Open the URL from the QR code
-                    window.location.href = result.text;
-                }
-                if (error && !(error instanceof ZXing.NotFoundException)) {
-                    console.error(error);
-                }
-            }).catch(err => {
+        async function startScanning() {
+            try {
+                // Set video constraints for better performance
+                const constraints = {
+                    video: {
+                        facingMode: "environment",
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    }
+                };
+
+                // Start the QR code scanner with improved constraints
+                await codeReader.decodeFromVideoDevice(null, videoElement, (result, error) => {
+                    if (result) {
+                        console.log('QR code detected:', result.text);
+                        window.location.href = result.text;
+                    }
+                    if (error && !(error instanceof ZXing.NotFoundException)) {
+                        console.error(error);
+                    }
+                });
+
+                // Handle errors
+            } catch (err) {
                 console.error('Error starting QR code scanning:', err);
-            });
+            }
         }
-        
-        // Start scanning when the page loads
+
         window.onload = startScanning;
 
-        // Logout button functionality
         document.getElementById('logoutButton').addEventListener('click', () => {
-            // Open the new URL in a new tab/window
             window.open('https://www.google.com', '_blank');
-            // Delay the closing of the current window to ensure the new window/tab has time to open
             setTimeout(() => {
-                window.close(); // ปิดหน้าต่างปัจจุบัน
+                window.close();
             }, 500);
         });
     </script>
 </body>
 </html>
-
