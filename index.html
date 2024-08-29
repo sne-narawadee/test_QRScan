@@ -16,6 +16,7 @@
 </html>
 -->
 
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -34,7 +35,7 @@
         }
         #header {
             text-align: center;
-            padding: 20px;
+            padding: 10px;
         }
         #image {
             max-width: 60px; /* ปรับขนาดของรูปภาพที่นี่ */
@@ -57,7 +58,7 @@
         }
         #logoutButton {
             position: fixed; /* ปักหมุดปุ่มที่ด้านล่างสุด */
-            bottom: 20px; /* ระยะห่างจากด้านล่าง */
+            bottom: 10px; /* ระยะห่างจากด้านล่าง */
             left: 50%;
             transform: translateX(-50%);
             padding: 10px 20px;
@@ -86,7 +87,16 @@
         
         // Function to start scanning
         function startScanning() {
-            codeReader.decodeFromVideoDevice(null, videoElement, (result, error) => {
+            codeReader.decodeFromVideoDevice(null, videoElement, {
+                // Set the desired video resolution
+                // Change these values according to your requirements
+                // Higher resolution may improve scanning accuracy but may also impact performance
+                videoConstraints: {
+                    facingMode: 'environment', // Use the back camera
+                    width: { ideal: 1280 },   // Ideal width of the video stream
+                    height: { ideal: 720 }    // Ideal height of the video stream
+                }
+            }, (result, error) => {
                 if (result) {
                     console.log('QR code detected:', result.text);
                     // Open the URL from the QR code
@@ -115,4 +125,3 @@
     </script>
 </body>
 </html>
-
