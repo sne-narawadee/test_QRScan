@@ -28,16 +28,13 @@
         body {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
             min-height: 100vh;
             margin: 0;
             font-family: 'Open Sans', sans-serif;
         }
-        #container {
+        #header {
             text-align: center;
-            position: relative;
-            width: 100%;
+            padding: 20px;
         }
         #image {
             max-width: 60px; /* ปรับขนาดของรูปภาพที่นี่ */
@@ -56,6 +53,7 @@
             width: 100%;
             height: 100%;
             border: 1px solid black;
+            flex-grow: 1; /* ทำให้ video ใช้พื้นที่ที่เหลือ */
         }
         #logoutButton {
             position: fixed; /* ปักหมุดปุ่มที่ด้านล่างสุด */
@@ -76,10 +74,7 @@
     </style>
 </head>
 <body>
-    <div id="container">
-        <!-- Pattern  
-        <img id="image" src="https://raw.githubusercontent.com/sne-narawadee/test_QRScan/main/+imgfile from upload+" alt="QR Scanner Image">
-        -->
+    <div id="header">
         <img id="image" src="https://raw.githubusercontent.com/sne-narawadee/test_QRScan/main/sneGoldBlockLogo3.png" alt="QR Scanner Image">
         <h1>SNE QR Scanner</h1>
     </div>
