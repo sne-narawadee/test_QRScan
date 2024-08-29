@@ -87,16 +87,7 @@
         
         // Function to start scanning
         function startScanning() {
-            codeReader.decodeFromVideoDevice(null, videoElement, {
-                // Set the desired video resolution
-                // Change these values according to your requirements
-                // Higher resolution may improve scanning accuracy but may also impact performance
-                videoConstraints: {
-                    facingMode: 'environment', // Use the back camera
-                    width: { ideal: 1280 },   // Ideal width of the video stream
-                    height: { ideal: 720 }    // Ideal height of the video stream
-                }
-            }, (result, error) => {
+            codeReader.decodeFromVideoDevice(null, videoElement, (result, error) => {
                 if (result) {
                     console.log('QR code detected:', result.text);
                     // Open the URL from the QR code
@@ -125,3 +116,4 @@
     </script>
 </body>
 </html>
+
